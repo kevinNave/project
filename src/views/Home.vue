@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <v-app><v-alert
-  type="success"
->ICI</v-alert></v-app>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>

@@ -1,30 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  <v-app>
-    <v-toolbar app dark class="indigo">
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify &nbsp;</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
+    <v-app id="inspire">
+      <v-navigation-drawer v-model="drawer" app>
+        <!--  -->
+      </v-navigation-drawer>
 
-    <v-content>
-      <HelloWorld />
-    </v-content>
-  </v-app>
+      <v-app-bar app>
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+        <v-toolbar-title>Application</v-toolbar-title>
+      </v-app-bar>
+
+      <v-main>
+        <!--  -->
+      </v-main>
+    </v-app>
   </div>
 </template>
 
@@ -50,3 +40,9 @@
   color: #42b983;
 }
 </style>
+
+<script>
+  export default {
+    data: () => ({ drawer: null }),
+  }
+</script>
