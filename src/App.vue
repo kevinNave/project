@@ -1,37 +1,52 @@
 <template>
   <div id="app">
+
+    <!-- Menu vertical gauche -->
     <v-app id="inspire">
-      <v-navigation-drawer v-model="drawer" app>
-        <v-sheet color="grey lighten-4" class="pa-4">
+
+      <v-navigation-drawer v-model="burger" app>
+        <v-sheet color="grey lighten-1" class="pa-4">
           <v-avatar class="mb-4" color="grey darken-1" size="64"></v-avatar>
           <div>Username</div>
         </v-sheet>
 
-      <v-divider></v-divider>
-
+      <!-- Menu -->
       <v-list>
-        <v-list-item v-for="[icon, text] in links" :key="icon" link>
+        <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
+          <!-- Icon menu -->
           <v-list-item-icon>
-            <v-icon>{{ icon }}</v-icon>
+            <v-icon color="teal lighten-1">{{ link.icon }}</v-icon>
           </v-list-item-icon>
-
+          <!-- Text menu -->
           <v-list-item-content>
-            <v-list-item-title>{{ text }}</v-list-item-title>
+            <v-list-item-title>{{ link.text }}</v-list-item-title>
           </v-list-item-content>
-        </v-list-item>
+        </v-list-item>  
       </v-list>
       </v-navigation-drawer>
 
-      <v-app-bar app>
-        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <!-- Burger Icon + barre top -->
+      <v-app-bar class="brown lighten-1" app>
+        <v-app-bar-nav-icon @click="burger = !burger"></v-app-bar-nav-icon>
 
-        <v-toolbar-title>MADERA</v-toolbar-title>
+        <v-toolbar-title><router-link class="text-decoration-none white--text" :to="{name: 'Home'}">MADERA</router-link></v-toolbar-title>
       </v-app-bar>
 
-      <v-main>
-        <!--  -->
+      <v-main class="white">
+        <router-link :to="{name:'Home'}"></router-link>
+        <router-view/>
+
+          <!-- Footer -->
+          <v-footer color="brown darken-4" absolute>
+            <v-row justify="center" no-gutters>
+              <v-btn v-for="link in links" :key="link.text" color="white" text rounded class="my-1"> {{ link.text }} </v-btn>
+              <v-col class="brown darken-4 py-4 text-center white--text" cols="12"> {{ new Date().getFullYear() }} — <strong>CESI Nantes</strong> </v-col>
+            </v-row>
+          </v-footer>
       </v-main>
+
     </v-app>
+    
   </div>
 </template>
 
@@ -43,31 +58,20 @@
   text-align: center;
   color: #2c3e50;
 }
-/*
-#nav {
-  padding: 30px;
-}
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}*/
 </style>
 
 <script>
   export default {
     data: () => ({ 
-      drawer: null,
+      burger: null,
       links: [
-        ['mdi-delete', 'Projets'],
-        ['mdi-inbox-arrow-down', 'Devis'],
-        ['mdi-send', 'Clients'],
-        ['mdi-delete', 'Catalogue'],
-        ['mdi-alert-octagon', 'A propos'],
+        {icon: 'fa-home', text: 'Accueil', route: '/'},
+        {icon: 'fa-folder-open', text: 'Projets', route: '/Project'},
+        {icon: 'fa-file-signature', text: 'Devis', route: '/Quote'},
+        {icon: 'fa-user', text: 'Clients', route: '/Customer'},
+        {icon: 'fa-book', text: 'Catalogue', route: '/Catalog'},
+        {icon: 'fa-info-circle', text: 'A propos', route: '/About'}
       ],}),
     
   }
