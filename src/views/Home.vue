@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home pt-5 pb-5">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
